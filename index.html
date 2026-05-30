@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Karaganda Events</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">Karaganda Events</div>
+  <div>
+    <button class="active" onclick="showPage('home',this)">Главная</button>
+    <button onclick="showPage('events',this)">Мероприятия</button>
+    <button onclick="showPage('booking',this)">Бронирование</button>
+  </div>
+</nav>
+
+<!-- HOME -->
+<div class="page active" id="page-home">
+  <div class="hero">
+    <img src="header.png" alt="Karaganda">
+    <div class="hero-over">
+      <h1>Мероприятия в Караганде</h1>
+      <p>Самые интересные события города!</p>
+    </div>
+  </div>
+  <div class="filters">
+    <button class="active" onclick="filterCards('all',this)">Все</button>
+    <button onclick="filterCards('concert',this)">Концерты</button>
+    <button onclick="filterCards('sport',this)">Спорт</button>
+    <button onclick="filterCards('festival',this)">Фестивали</button>
+  </div>
+  <div class="grid" id="grid-home"></div>
+</div>
+
+<!-- EVENTS -->
+<div class="page" id="page-events">
+  <div class="hero">
+    <img src="header.png" alt="Karaganda">
+    <div class="hero-over">
+      <h1>Все мероприятия</h1>
+      <p>Полный список событий города Карагaнды</p>
+    </div>
+  </div>
+  <div class="filters">
+    <button class="active" onclick="filterCards('all',this)">Все</button>
+    <button onclick="filterCards('concert',this)">Концерты</button>
+    <button onclick="filterCards('sport',this)">Спорт</button>
+    <button onclick="filterCards('festival',this)">Фестивали</button>
+  </div>
+  <div class="grid" id="grid-events"></div>
+</div>
+
+<!-- BOOKING -->
+<div class="page" id="page-booking">
+  <div class="booking-wrap">
+    <h2>Бронирование</h2>
+    <p class="sub">Выберите места для вашего мероприятия</p>
+    <div class="sec-label">Схема зала</div>
+    <div class="legend">
+      <div class="leg"><div class="dot free"></div> Свободно</div>
+      <div class="leg"><div class="dot sel"></div> Выбрано</div>
+      <div class="leg"><div class="dot taken"></div> Занято</div>
+    </div>
+    <div class="seats-box">
+      <div class="stage">🎤 СЦЕНА</div>
+      <div id="seats-grid"></div>
+    </div>
+    <div class="summary">
+      <div class="si"><div class="lbl">Выбрано мест</div><div class="val" id="seat-count"><span>0</span></div></div>
+      <div class="si"><div class="lbl">Стоимость</div><div class="val"><span id="seat-total">0</span> тг.</div></div>
+      <div class="si"><div class="lbl">Цена за место</div><div class="val" style="font-size:1rem;color:#888">2 000 тг.</div></div>
+    </div>
+    <div class="field">
+      <label>Имя и фамилия</label>
+      <input type="text" id="booking-name" placeholder="Введите ваше имя и фамилию">
+    </div>
+    <button class="btn-confirm" onclick="confirmBooking()">Подтвердить бронирование</button>
+    <div class="success" id="success-msg">
+      <div style="font-size:2.5rem;margin-bottom:.5rem">🎉</div>
+      <h3>Бронирование выполнено!</h3>
+      <p id="success-detail">Спасибо! Ваши места забронированы.</p>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL -->
+<div class="overlay" id="overlay">
+  <div class="modal">
+    <button class="close-btn" onclick="closeModal()">✕</button>
+    <img id="m-img" src="" alt="">
+    <div class="modal-body">
+      <p class="tag" id="m-tag"></p>
+      <h2 id="m-title"></h2>
+      <div class="modal-meta">
+        <span id="m-date"></span>
+        <span id="m-place"></span>
+      </div>
+      <p class="modal-desc" id="m-desc"></p>
+      <button class="btn" onclick="goToBooking()">🎟 Забронировать</button>
+    </div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
